@@ -12,6 +12,15 @@ module and :class:`Song`.
 from __future__ import annotations
 
 from codaw.arrangement.song import Song
+from codaw.components.effects import (
+    Delay,
+    Distortion,
+    Effect,
+    Filter,
+    Gain,
+    Pan,
+    Reverb,
+)
 from codaw.components.events import NoteEvent
 from codaw.components.instrument import Instrument, Synth
 from codaw.core import oscillators
@@ -24,9 +33,16 @@ __version__ = "0.0.1"
 
 __all__ = [
     "ADSR",
+    "Delay",
+    "Distortion",
+    "Effect",
+    "Filter",
+    "Gain",
     "Instrument",
     "Note",
     "NoteEvent",
+    "Pan",
+    "Reverb",
     "Scale",
     "Signal",
     "Song",
