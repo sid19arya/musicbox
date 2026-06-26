@@ -13,11 +13,13 @@ from __future__ import annotations
 
 from codaw.arrangement.song import Song
 from codaw.core import oscillators
+from codaw.core.envelopes import ADSR
 from codaw.core.signal import Signal
 
 __version__ = "0.0.1"
 
 __all__ = [
+    "ADSR",
     "Signal",
     "Song",
     "oscillators",
