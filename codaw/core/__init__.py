@@ -3,8 +3,8 @@ DSP helpers and filters."""
 
 from __future__ import annotations
 
-from codaw.core import dsp, oscillators
+from codaw.core import dsp, filters, oscillators
 from codaw.core.envelopes import ADSR
 from codaw.core.signal import Signal
 
-__all__ = ["ADSR", "Signal", "dsp", "oscillators"]
+__all__ = ["ADSR", "Signal", "dsp", "filters", "oscillators"]
