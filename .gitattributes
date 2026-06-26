@@ -1,0 +1,8 @@
+# Normalize line endings to LF for all text files so renders, ruff format
+# checks and golden tests are deterministic across Windows/Linux/macOS.
+* text=auto eol=lf
+
+# Binary audio artifacts must never be line-ending munged.
+*.wav binary
+*.flac binary
+*.ogg binary

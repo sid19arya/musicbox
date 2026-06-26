@@ -1,0 +1,82 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "codaw"
+version = "0.0.1"
+description = "A codified digital audio workstation — every component is a code module and every song is a script."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "sid" }]
+keywords = ["audio", "daw", "dsp", "synthesis", "music"]
+classifiers = [
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Sound/Audio",
+]
+dependencies = [
+    "numpy>=1.23",
+    "scipy>=1.9",
+    "soundfile>=0.12",
+]
+
+[project.optional-dependencies]
+playback = ["sounddevice>=0.4"]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "ruff>=0.6",
+    "mypy>=1.8",
+    "build>=1.0",
+]
+
+[project.scripts]
+codaw = "codaw.interface.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/sid19arya/musicbox"
+Repository = "https://github.com/sid19arya/musicbox"
+
+[tool.hatch.build.targets.wheel]
+packages = ["codaw"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "W", "UP", "B", "C4", "SIM"]
+ignore = []
+
+[tool.ruff.lint.isort]
+known-first-party = ["codaw"]
+
+# Note: python_version is intentionally not pinned here so mypy infers it from
+# the running interpreter. This keeps type-checking correct across the CI matrix
+# (3.10–3.12), where each job installs the NumPy build appropriate to its Python.
+[tool.mypy]
+packages = ["codaw"]
+strict = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.coverage.run]
+source = ["codaw"]
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "if TYPE_CHECKING:",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
