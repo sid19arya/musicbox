@@ -1,0 +1,24 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "f5b8aee1dc72",
+  "session_id": "7debe302-44de-4d81-b506-4b8f938a7522",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-26T14:37:14.1287222Z",
+  "branch": "feat/oscillators",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8",
+  "turn_id": "9c92b54659af",
+  "token_usage": {
+    "input_tokens": 8690,
+    "cache_creation_tokens": 196984,
+    "cache_read_tokens": 5508124,
+    "output_tokens": 44105,
+    "api_call_count": 98
+  },
+  "session_metrics": {
+    "turn_count": 1
+  }
+}
