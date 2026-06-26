@@ -1,0 +1,38 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "564594ff5cea",
+  "session_id": "7debe302-44de-4d81-b506-4b8f938a7522",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-26T15:06:14.1762004Z",
+  "branch": "feat/signal-ops",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [
+    "codaw/core/signal.py"
+  ],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8",
+  "turn_id": "9c92b54659af",
+  "token_usage": {
+    "input_tokens": 11097,
+    "cache_creation_tokens": 225831,
+    "cache_read_tokens": 9137097,
+    "output_tokens": 66816,
+    "api_call_count": 132
+  },
+  "session_metrics": {
+    "turn_count": 1
+  },
+  "initial_attribution": {
+    "calculated_at": "2026-06-26T15:06:14.1347725Z",
+    "agent_lines": 0,
+    "agent_removed": 0,
+    "human_added": 74,
+    "human_modified": 0,
+    "human_removed": 0,
+    "total_committed": 74,
+    "total_lines_changed": 74,
+    "agent_percentage": 0,
+    "metric_version": 2
+  }
+}
