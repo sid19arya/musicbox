@@ -1,0 +1,23 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "fb2ad715edc7",
+  "strategy": "manual-commit",
+  "branch": "feat/pitch-timing",
+  "checkpoints_count": 1,
+  "files_touched": null,
+  "sessions": [
+    {
+      "metadata": "/fb/2ad715edc7/0/metadata.json",
+      "transcript": "/fb/2ad715edc7/0/full.jsonl",
+      "content_hash": "/fb/2ad715edc7/0/content_hash.txt",
+      "prompt": "/fb/2ad715edc7/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15673,
+    "cache_creation_tokens": 374416,
+    "cache_read_tokens": 11803750,
+    "output_tokens": 85441,
+    "api_call_count": 153
+  }
+}
