@@ -1,0 +1,26 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "d6f536008d8d",
+  "strategy": "manual-commit",
+  "branch": "feat/envelopes",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "codaw/__init__.py",
+    "codaw/core/__init__.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/d6/f536008d8d/0/metadata.json",
+      "transcript": "/d6/f536008d8d/0/full.jsonl",
+      "content_hash": "/d6/f536008d8d/0/content_hash.txt",
+      "prompt": "/d6/f536008d8d/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 9446,
+    "cache_creation_tokens": 206265,
+    "cache_read_tokens": 6782741,
+    "output_tokens": 51334,
+    "api_call_count": 111
+  }
+}
