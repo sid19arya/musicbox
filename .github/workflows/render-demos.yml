@@ -1,0 +1,51 @@
+name: Render demos
+
+# The build artifact of a DAW is music: every green build on main renders the
+# example songs to WAV and uploads them as workflow artifacts.
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  render:
+    name: render songs → WAV artifacts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system audio libraries
+        run: sudo apt-get update && sudo apt-get install -y libsndfile1 libportaudio2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install project
+        run: uv pip install --system -e "."
+
+      - name: Render demo songs
+        run: |
+          mkdir -p build
+          if ls songs/*.py >/dev/null 2>&1 && codaw --help >/dev/null 2>&1; then
+            echo "Rendering songs/ via the codaw CLI"
+            codaw render-all songs/ -o build/
+          else
+            echo "CLI/songs not available yet — rendering MVP placeholder via the Python API"
+            python -c "from codaw import Song; Song(bpm=120).save('build/placeholder.wav')"
+          fi
+          echo "Rendered files:"
+          ls -lh build/
+
+      - name: Upload rendered WAVs
+        uses: actions/upload-artifact@v4
+        with:
+          name: rendered-demos
+          path: build/*.wav
+          if-no-files-found: error
