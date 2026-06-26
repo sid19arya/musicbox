@@ -74,6 +74,24 @@ mypy codaw            # type check
 pytest --cov=codaw --cov-fail-under=85   # tests + coverage gate
 ```
 
+## Continuous integration
+
+Three GitHub Actions workflows back the project:
+
+- **`ci.yml`** — on every push and PR: lint (`ruff check`), format check
+  (`ruff format`), type check (`mypy`) and tests with an **85% coverage gate**,
+  across Python 3.10 / 3.11 / 3.12.
+- **`render-demos.yml`** — on push to `main`: renders the example songs and
+  uploads the resulting WAVs as workflow artifacts. The build artifact of a DAW
+  is music.
+- **`release.yml`** — on a `v*` tag: builds the sdist + wheel, renders demos,
+  and publishes a GitHub Release with the wheel and demo WAVs attached.
+
+**Branch protection.** `main` is protected: the `CI` status check must pass
+before a PR can be merged, and changes land via squash-merge of a feature
+branch — there are no direct pushes to `main` after the MVP. (Configured on the
+repository under Settings → Branches.)
+
 ## License
 
 MIT
