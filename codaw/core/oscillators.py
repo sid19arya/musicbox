@@ -7,13 +7,14 @@ the ``feat/oscillators`` feature.
 from __future__ import annotations
 
 import numpy as np
+import numpy.typing as npt
 
 from codaw.core.signal import Signal
 
 __all__ = ["sine"]
 
 
-def _time_axis(duration: float, sample_rate: int) -> np.ndarray:
+def _time_axis(duration: float, sample_rate: int) -> npt.NDArray[np.float64]:
     """Return the sample time axis (in seconds) for ``duration`` at ``sample_rate``."""
     if duration < 0:
         raise ValueError(f"duration must be non-negative, got {duration}")
