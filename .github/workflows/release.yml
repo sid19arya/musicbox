@@ -1,0 +1,56 @@
+name: Release
+
+# On a v* tag: build sdist+wheel, render the demo songs, and publish a GitHub
+# Release with the wheel and the demo WAVs attached.
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: build · render · publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install system audio libraries
+        run: sudo apt-get update && sudo apt-get install -y libsndfile1 libportaudio2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install project + build backend
+        run: uv pip install --system -e "." build
+
+      - name: Build sdist + wheel
+        run: python -m build
+
+      - name: Render demo songs
+        run: |
+          mkdir -p build_audio
+          if ls songs/*.py >/dev/null 2>&1 && codaw --help >/dev/null 2>&1; then
+            codaw render-all songs/ -o build_audio/
+          else
+            python -c "from codaw import Song; Song(bpm=120).save('build_audio/placeholder.wav')"
+          fi
+          ls -lh build_audio/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          generate_release_notes: true
+          files: |
+            dist/*.whl
+            dist/*.tar.gz
+            build_audio/*.wav
