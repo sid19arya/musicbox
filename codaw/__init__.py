@@ -15,13 +15,18 @@ from codaw.arrangement.song import Song
 from codaw.core import oscillators
 from codaw.core.envelopes import ADSR
 from codaw.core.signal import Signal
+from codaw.music.pitch import Note
+from codaw.music.scales import Scale, chord
 
 __version__ = "0.0.1"
 
 __all__ = [
     "ADSR",
+    "Note",
+    "Scale",
     "Signal",
     "Song",
+    "chord",
     "oscillators",
     "__version__",
 ]
