@@ -12,6 +12,8 @@ module and :class:`Song`.
 from __future__ import annotations
 
 from codaw.arrangement.song import Song
+from codaw.components.events import NoteEvent
+from codaw.components.instrument import Instrument, Synth
 from codaw.core import oscillators
 from codaw.core.envelopes import ADSR
 from codaw.core.signal import Signal
@@ -22,10 +24,13 @@ __version__ = "0.0.1"
 
 __all__ = [
     "ADSR",
+    "Instrument",
     "Note",
+    "NoteEvent",
     "Scale",
     "Signal",
     "Song",
+    "Synth",
     "chord",
     "oscillators",
     "__version__",
