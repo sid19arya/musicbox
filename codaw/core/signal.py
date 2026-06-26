@@ -71,3 +71,77 @@ class Signal:
             f"Signal(length={self.length}, channels={self.channels}, "
             f"sample_rate={self.sample_rate})"
         )
+
+    # -- channel conversion ------------------------------------------------
+
+    def to_mono(self) -> Signal:
+        """Return a mono copy: stereo is averaged across channels."""
+        if self.channels == 1:
+            return Signal(self.samples.reshape(-1), self.sample_rate)
+        return Signal(self.samples.mean(axis=1), self.sample_rate)
+
+    def to_stereo(self) -> Signal:
+        """Return a stereo copy: mono is duplicated to both channels."""
+        if self.channels == 2:
+            return Signal(self.samples, self.sample_rate)
+        mono = self.samples.reshape(-1)
+        return Signal(np.stack([mono, mono], axis=1), self.sample_rate)
+
+    # -- shaping -----------------------------------------------------------
+
+    def pad_to(self, n: int) -> Signal:
+        """Return a copy zero-padded at the tail to at least ``n`` samples.
+
+        If the signal already has ``>= n`` samples it is returned unchanged
+        (as a copy); ``pad_to`` only extends, never truncates.
+        """
+        if n < 0:
+            raise ValueError(f"n must be non-negative, got {n}")
+        pad = n - self.length
+        if pad <= 0:
+            return Signal(self.samples, self.sample_rate)
+        width = ((0, pad), (0, 0)) if self.samples.ndim == 2 else (0, pad)
+        return Signal(np.pad(self.samples, width), self.sample_rate)
+
+    def slice(self, start_s: float, end_s: float) -> Signal:
+        """Return the ``[start_s, end_s)`` time slice as a new signal.
+
+        Bounds are clamped to the signal's extent; ``start_s`` must be
+        non-negative and ``end_s >= start_s``.
+        """
+        if start_s < 0:
+            raise ValueError(f"start_s must be non-negative, got {start_s}")
+        if end_s < start_s:
+            raise ValueError(f"end_s ({end_s}) must be >= start_s ({start_s})")
+        i = min(int(round(start_s * self.sample_rate)), self.length)
+        j = min(int(round(end_s * self.sample_rate)), self.length)
+        return Signal(self.samples[i:j], self.sample_rate)
+
+    # -- arithmetic --------------------------------------------------------
+
+    def __mul__(self, factor: float) -> Signal:
+        """Scale amplitude by a scalar ``factor`` (linear gain)."""
+        if not isinstance(factor, (int, float)):
+            return NotImplemented
+        return Signal(self.samples * float(factor), self.sample_rate)
+
+    __rmul__ = __mul__
+
+    def __add__(self, other: Signal) -> Signal:
+        """Mix two signals, aligning length (zero-pad) and channels (up-mix).
+
+        The two signals must share a sample rate. If either is stereo the
+        result is stereo; the shorter signal is zero-padded to the longer.
+        """
+        if not isinstance(other, Signal):
+            return NotImplemented
+        if other.sample_rate != self.sample_rate:
+            raise ValueError(
+                f"cannot mix signals with different sample rates "
+                f"({self.sample_rate} vs {other.sample_rate})"
+            )
+        a, b = self, other
+        if a.channels == 2 or b.channels == 2:
+            a, b = a.to_stereo(), b.to_stereo()
+        n = max(a.length, b.length)
+        return Signal(a.pad_to(n).samples + b.pad_to(n).samples, self.sample_rate)
