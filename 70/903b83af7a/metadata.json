@@ -1,0 +1,23 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "70903b83af7a",
+  "strategy": "manual-commit",
+  "branch": "feat/pitch-timing",
+  "checkpoints_count": 1,
+  "files_touched": null,
+  "sessions": [
+    {
+      "metadata": "/70/903b83af7a/0/metadata.json",
+      "transcript": "/70/903b83af7a/0/full.jsonl",
+      "content_hash": "/70/903b83af7a/0/content_hash.txt",
+      "prompt": "/70/903b83af7a/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 15673,
+    "cache_creation_tokens": 374416,
+    "cache_read_tokens": 11803750,
+    "output_tokens": 85441,
+    "api_call_count": 153
+  }
+}
