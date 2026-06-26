@@ -1,0 +1,24 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "6681cb8e8215",
+  "session_id": "7debe302-44de-4d81-b506-4b8f938a7522",
+  "strategy": "manual-commit",
+  "created_at": "2026-06-26T15:06:24.2541188Z",
+  "branch": "feat/signal-ops",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [],
+  "agent": "Claude Code",
+  "model": "claude-opus-4-8",
+  "turn_id": "9c92b54659af",
+  "token_usage": {
+    "input_tokens": 11097,
+    "cache_creation_tokens": 225831,
+    "cache_read_tokens": 9137097,
+    "output_tokens": 66816,
+    "api_call_count": 132
+  },
+  "session_metrics": {
+    "turn_count": 1
+  }
+}

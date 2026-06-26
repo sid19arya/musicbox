@@ -1,0 +1,23 @@
+{
+  "cli_version": "0.7.7",
+  "checkpoint_id": "6681cb8e8215",
+  "strategy": "manual-commit",
+  "branch": "feat/signal-ops",
+  "checkpoints_count": 1,
+  "files_touched": null,
+  "sessions": [
+    {
+      "metadata": "/66/81cb8e8215/0/metadata.json",
+      "transcript": "/66/81cb8e8215/0/full.jsonl",
+      "content_hash": "/66/81cb8e8215/0/content_hash.txt",
+      "prompt": "/66/81cb8e8215/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 11097,
+    "cache_creation_tokens": 225831,
+    "cache_read_tokens": 9137097,
+    "output_tokens": 66816,
+    "api_call_count": 132
+  }
+}
