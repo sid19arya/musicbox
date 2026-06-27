@@ -11,7 +11,10 @@ module and :class:`Song`.
 
 from __future__ import annotations
 
+from codaw.arrangement.mixer import Mixer
+from codaw.arrangement.pattern import Pattern
 from codaw.arrangement.song import Song
+from codaw.arrangement.track import Track
 from codaw.components.effects import (
     Delay,
     Distortion,
@@ -39,14 +42,17 @@ __all__ = [
     "Filter",
     "Gain",
     "Instrument",
+    "Mixer",
     "Note",
     "NoteEvent",
     "Pan",
+    "Pattern",
     "Reverb",
     "Scale",
     "Signal",
     "Song",
     "Synth",
+    "Track",
     "chord",
     "oscillators",
     "__version__",
